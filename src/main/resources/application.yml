@@ -1,0 +1,52 @@
+server:
+  port: 8080
+xf:
+  config:
+    hostUrl: https://spark-api.xf-yun.com/v1.1/chat
+    appId: f3e8258e
+    apiSecret: MjI1MDc5YTgwMGQxZDY3MDI1Nzg1YzFh
+    apiKey: a05d1c59652d3a077eb114db695f9e0a
+    maxResponseTime: 30
+spring:
+  # 配置发送方信息
+  mail:
+    host: smtp.qq.com
+    username: 3106627097@qq.com  # 邮箱地址
+    password: vvvbzfidfslzddba # 授权码
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  # thymeleaf
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+  mvc:
+    date-format: yyyy-MM-dd
+    static-path-pattern: /static/**
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: test1
+    password: 123456
+    url: jdbc:mysql://47.96.126.180:3306/test1?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT&useSSL=false
+    type: com.alibaba.druid.pool.DruidDataSource
+# mybatis
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+alipay:
+  url: https://openapi-sandbox.dl.alipaydev.com/gateway.do
+  appid: 9021000139687464
+  privateKey: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCPQBGDYt7vWGpVpkIcXRxTfiVzvrJkRr77QfaNPev8/TDotKctKqEDO2Mt81HfmoL0yTK3bXquXLDBVn0ouyF9n8SggPbQCFed0HlJ/ng5S2vGxlervQOxYLdvS458/049QJEm8vGBm92429vA8UXcFNdvquobDXwUfRB5bUyJSiedKByahtFpaPu+0YrMn47rS+lB/omEAnUHS6kONRKvM5826LSPfSmDKUsheFrZ47SglpLj4oQ+zdjhhemHzloQQ58xGOxngkgo8V97OCSAtxVyQnl4PMTNPiZdoRbV32zg/VndKDOOFoSfsS1i2Tv9xiLA+LQEoYcUh8gcrWKJAgMBAAECggEAE/ykdOh+onZ7n6eq4bo8EYowP44D5enZC8WQWPSi0JGjGVTbXnnsLT9D/01Lxx8P1oecA+vKijl0kAU5QU2axqRcEujrhusjDmngAmr260eSqhFSeivNMBqGfYjVQKt+hx1TI1QSTjspHHnQl4MSdDqUNIhsUYn4HgO1ILwXSbBQBqjWgQh6EakHfoLq7fwXySAg9jm8eei21yudrEEclUxCNAnufQ9ALJz7hGUgLObvGwtUy5iX7G3SCj8uQ9IDepTLGff1L9O85YzrDqbwCa47V7fs8I8jZ4rpZbeCts+rYYV10LcxfofhtZA4Aif0tgjKUKJ12kMn+NskTEr24QKBgQDzud97jNA4/Z0JTZI7rNz2+7bSJW9vXM/y4CWmPPL5UqlGztK/1uBN39YXKV/wBC9YvXQTYTpdUCIc4WEgFxSjZynjDn9MlmX5Q95wlxcU9w5462j+7f2QELPDZJwz1TPaMx2bpdU/IDnC9ozasQjALDtHPmTz4afrZ2vg//dbYwKBgQCWdttpAhhiYk2YMcuy/YUQSWXGFGujkeL6NISdlfCMwGiKHrstMLmak/NW3sS/cH5+UtQcxM07nv/9n1qGnNcSzvG1c15LnADZ8gN2S1MLCn2xMIdf37CmGm6Wd/xdHUWatXcqq2zfqdkqjRdmj8WKbtc43dLz90WyL1+fO6PMIwKBgQCsfYnq+NeM3gC7ysiJr2ea7L6Qr6nUGM2bSIOcyVn0lknzMQD6gGqy8o2kSsX5Kh0QItT5ukACNmpOIjwI6AzVMHf2mBYD8BUvepb8/BF75vW5InJmqaxgv1FaIeRi0qsl7DMyKwVm7bmzf6ZkSBK3XxZ8722nJLcg5Ur2LHG1nQKBgDcq2yW0Q/aGroaX82TsOUaQcsVepVyy17L/YIRa/njM70d9HwnhrJu1lWoLgb3jZC2y9tyZd9pdYOS/8bQbe2wE/nCWHUPBrjo61vQfiBIrRYybC3emj6FHXbbDxX7qhaPE1y2I7wFOyDYmxyaunjI0k6rhAkC7MA21+uxqNJNbAoGBAJpVeYHePamfhmFs1LiKTDvInLiyNL3hSg5/gN7ZXgwj83JQioyFF6YZsR6fMwQPSf6e0X+weGaO9treCH9+LaCyu7EyPhmaeFHdvQa588b4ZR/6USwZlwlIiXXe3wxbToWFiGx9G4dPXf2gwdiN2eaXvk8PlrYJsJX0K+h65PGv
+  publicKey:  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmRKCTRgyUwUDufRAHBgtwSpZEbqmYrSNHocBr4pY6tM8wiyZ/ieh9dQeUffqamWO1hVwRB8An0tC53SJJNUEqkezXQQy2GzRLqZffd41LGnvOZUXpnqx05cvdLSJDD2PV8O8f6p9vGtFWdtjmivcD7VAw7Ww7HC/yfmaDGD3P7NO5xzYPuzbXSc6ymMBgYuSCy5AbbGK7d/ZALOJrOGg2eCRBm6HhQpIAwuZf9nnKJ+6O+XhlilkNgCDxIKN8Aocgbdlntuv2zie0nbxnKDocYC0bxkEtBMBK9/sKizuuPikqSKJ4xCy8DSEogmVeixZyQ5PvJv3eDfI/NL25l9bOwIDAQAB
+  notifyUrl: http://101.37.90.99:35861/notify
+  returnUrl: http://localhost:8080

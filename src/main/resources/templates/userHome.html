@@ -1,0 +1,130 @@
+<!-- user_info.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+        .user-profile {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        .user-profile img {
+            border-radius: 50%;
+            margin-bottom: 20px;
+            width: 100px;
+            height: 100px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="user-profile">
+    <img src="https://ts1.cn.mm.bing.net/th/id/R-C.c723725e03aea506040fdc41659447f8?rik=KKB0D8ryLw1Z2g&riu=http%3a%2f%2fwww.gx8899.com%2fuploads%2fallimg%2f150324%2f10310151W-5.jpg&ehk=%2fWE%2f4he9HYPYjbcCqAjI4XhKFkFkN4hh11Z5xIofokY%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1" alt="用户头像">
+    <div>
+        <div>
+            账户名称：<h1 id="userName"></h1>
+        </div>
+        <div>
+            邮箱：<p id="userEmail"></p>
+        </div>
+        <div>
+            激活状态：<p id="userStatus"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 假设这是服务端的URL
+    let userid;
+    let url1 = 'http://localhost:8080/api/userinfo?id='+userid;
+    let url2 = 'http://localhost:8080/api/getuserid';
+
+    function getUserId() {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET',url2,true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) { // 状态为4意味着请求已完成
+                if (xhr.status === 200) { // 检查状态码
+                    // 解析JSON格式的响应体（在这个例子中，我们假设响应体是一个整型）
+                    let response = JSON.parse(xhr.responseText);
+                    let userId = response.id; // 提取整型字段
+                    console.log('User ID received:', userId);
+                    // 假设userId是一个整型，你可以根据需要更新UI
+                    userid=userId;
+                } else {
+                    console.error('Failed to fetch data:', xhr.statusText);
+                }
+            }
+        };
+        // 发送请求
+        xhr.send();
+    }
+
+    // 使用原生XMLHttpRequest发送GET请求
+    function getUserData() {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', url1, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    try {
+                        let userData = JSON.parse(xhr.responseText);
+                        displayUserInfo(userData);
+                    } catch (error) {
+                        console.error('Failed to parse JSON:', error);
+                        // 向用户显示错误消息
+                        let errorElement = document.createElement('p');
+                        errorElement.textContent = '无法获取用户信息，请检查网络连接或稍后再试。';
+                        document.querySelector('.user-profile').appendChild(errorElement);
+                    }
+                } else {
+                    console.error('Network response was not ok', xhr.statusText);
+                    // 向用户显示错误消息
+                    let errorElement = document.createElement('p');
+                    errorElement.textContent = '无法获取用户信息，请检查网络连接或稍后再试。';
+                    document.querySelector('.user-profile').appendChild(errorElement);
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    // 显示用户信息的函数
+    function displayUserInfo(user) {
+        document.getElementById('userName').innerText = user.username;
+        document.getElementById('userEmail').innerText = user.email;
+        document.getElementById('userStatus').innerText = user.activeStatus ? '已激活' : '未激活';
+    }
+
+    // 页面加载完毕后执行获取用户数据的操作
+    window.onload = function() {
+        getUserId();
+        getUserData();
+    };
+</script>
+
+
+</body>
+</html>
