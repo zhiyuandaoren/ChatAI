@@ -1,8 +1,6 @@
 package com.example.mailregister.entity;
 
-import jakarta.persistence.*;
-import lombok.Data;
-import org.springframework.stereotype.Component;
+import javax.persistence.*;
 
 @Entity
 public class User2 {

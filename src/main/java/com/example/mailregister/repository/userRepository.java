@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface userRepository extends CrudRepository<User2,Integer> {
+public interface userRepository extends JpaRepository<User2,Integer> {
 }
